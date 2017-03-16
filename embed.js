@@ -20,23 +20,23 @@ var User = mongoose.model("User", userSchema);
 
 
 
-var newUser = new User({
-  email: "herminoe@brown.edu",
-  name: "Hermione Granger"
-});
+// var newUser = new User({
+//   email: "Joe@brown.edu",
+//   name: "Joe Granger"
+// });
 
-newUser.posts.push({
-    title: "How to brew beer at home",
-    content: "Just kidding...beer made at home is terrible"
-});
+// newUser.posts.push({
+//     title: "How to brew beer at home AGAIN",
+//     content: "Just kidding...beer made at home is terrible..REALLY IT SUCKS!"
+// });
 
-newUser.save(function(err, user){
-  if(err){
-      console.log(err);
-  }else{
-      console.log(user);
-  } 
-});
+// newUser.save(function(err, user){
+//   if(err){
+//       console.log(err);
+//   }else{
+//       console.log(user);
+//   } 
+// });
 
 // var newPost = new Post({
 //     title: "Somthing Very Awesome",
@@ -50,3 +50,22 @@ newUser.save(function(err, user){
 //       console.log(post);
 //   }  
 // });
+
+User.findOne({name: "Hermione Granger"}, function(err, user){
+    if(err){
+        console.log(err);
+    }else{
+        user.posts.push({
+            title: "Three things I love",
+            content: "Puppies, kittiens, sunshine!"
+        });
+        user.save(function(err, user){
+           if(err){
+               console.log(err);
+           }else{
+               console.log(user);
+           } 
+        });
+    }
+});
+
