@@ -34,30 +34,38 @@ var User = mongoose.model("User", userSchema);
 //     }
 // });
 
-Post.create({
-    title: "How to cook a burger",
-    content: "blah, blah, blah, blah"
-}, function(err, post){
+// Post.create({
+//     title: "How to cook a burger AGAIN",
+//     content: "adkfljadlkfjal;kdjflkajdfl;kajdfkajdofjalkj"
+// }, function(err, post){
+//     if(err){
+//         console.log(err);
+//     }else{
+//         console.log(post);
+//         User.findOne({email: "bob@bobby.com"}, function(err, foundUser){
+//             if(err){
+//                 console.log(err);
+//             }else{
+//                 console.log("======================");
+//                 foundUser.posts.push(post);
+//                 console.log(foundUser);
+//                 foundUser.save(function(err, data){
+//                     if(err){
+//                         console.log(err);
+//                     }else{
+//                         console.log("======================");
+//                         console.log(data);
+//                     }
+//                 })
+//             }
+//         });
+//     }
+// });
+
+User.findOne({email: "bob@bobby.com"}).populate("posts").exec(function(err, user){
     if(err){
         console.log(err);
     }else{
-        console.log(post);
-        User.findOne({email: "bob@bobby.com"}, function(err, foundUser){
-            if(err){
-                console.log(err);
-            }else{
-                console.log("======================");
-                foundUser.posts.push(post);
-                console.log(foundUser);
-                foundUser.save(function(err, data){
-                    if(err){
-                        console.log(err);
-                    }else{
-                        console.log("======================");
-                        console.log(data);
-                    }
-                })
-            }
-        });
+        console.log(user);
     }
 });
