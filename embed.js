@@ -4,7 +4,8 @@ mongoose.connect("mongodb://localhost/bog_demo2");
 //define User model - email and name
 var userSchema = new mongoose.Schema({
     email: String,
-    name: String
+    name: String,
+    posts: [postSchema]  //this is an array of posts that is associated to the created user
 });
 
 var User = mongoose.model("User", userSchema);
