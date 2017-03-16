@@ -42,5 +42,22 @@ Post.create({
         console.log(err);
     }else{
         console.log(post);
+        User.findOne({email: "bob@bobby.com"}, function(err, foundUser){
+            if(err){
+                console.log(err);
+            }else{
+                console.log("======================");
+                foundUser.posts.push(post);
+                console.log(foundUser);
+                foundUser.save(function(err, data){
+                    if(err){
+                        console.log(err);
+                    }else{
+                        console.log("======================");
+                        console.log(data);
+                    }
+                })
+            }
+        });
     }
 });
