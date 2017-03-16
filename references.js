@@ -13,58 +13,34 @@ var Post = mongoose.model("Post", postSchema);
 var userSchema = new mongoose.Schema({
     email: String,
     name: String,
-    posts: [postSchema]  //this is an array of posts that is associated to the created user
+    posts: [
+        {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "Post"
+         }
+    ]  //this is an array of objects with ID's associated with posts
 });
 
 var User = mongoose.model("User", userSchema);
 
-
-
-// var newUser = new User({
-//   email: "Joe@brown.edu",
-//   name: "Joe Granger"
+// User.create({
+//     email: "bob@bobby.com",
+//     name: "Bob Bobber"});
+// }, function(err, user){
+//     if(err){
+//         console.log(err);
+//     }else{
+//         console.log(user);
+//     }
 // });
 
-// newUser.posts.push({
-//     title: "How to brew beer at home AGAIN",
-//     content: "Just kidding...beer made at home is terrible..REALLY IT SUCKS!"
-// });
-
-// newUser.save(function(err, user){
-//   if(err){
-//       console.log(err);
-//   }else{
-//       console.log(user);
-//   } 
-// });
-
-// var newPost = new Post({
-//     title: "Somthing Very Awesome",
-//     content: "This is a lot of very interesting things that you need to read..."
-// });
-
-// newPost.save(function(err, post){
-//   if(err){
-//       console.log(err);
-//   }else{
-//       console.log(post);
-//   }  
-// });
-
-User.findOne({name: "Hermione Granger"}, function(err, user){
+Post.create({
+    title: "How to cook a burger",
+    content: "blah, blah, blah, blah"
+}, function(err, post){
     if(err){
         console.log(err);
     }else{
-        user.posts.push({
-            title: "Three things I love",
-            content: "Puppies, kittiens, sunshine!"
-        });
-        user.save(function(err, user){
-           if(err){
-               console.log(err);
-           }else{
-               console.log(user);
-           } 
-        });
+        console.log(post);
     }
 });
