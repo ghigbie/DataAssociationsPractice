@@ -1,7 +1,8 @@
 var mongoose = require("mongoose");
 mongoose.connect("mongodb://localhost/bog_demo2_2");
 
-var Post = require("./models/post");
+var Post = require("./models/post.js");
+var User = require("./models/user.js")
 
 //define POST model - title, content =====> This needs to come first because it has to be part of the userSchema
 // var postSchema = new mongoose.Schema({
@@ -11,19 +12,19 @@ var Post = require("./models/post");
 
 // var Post = mongoose.model("Post", postSchema);
 
-//define User model - email and name
-var userSchema = new mongoose.Schema({
-    email: String,
-    name: String,
-    posts: [
-        {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: "Post"
-         }
-    ]  //this is an array of objects with ID's associated with posts
-});
+// //define User model - email and name
+// var userSchema = new mongoose.Schema({
+//     email: String,
+//     name: String,
+//     posts: [
+//         {
+//                 type: mongoose.Schema.Types.ObjectId,
+//                 ref: "Post"
+//          }
+//     ]  //this is an array of objects with ID's associated with posts
+// });
 
-var User = mongoose.model("User", userSchema);
+// var User = mongoose.model("User", userSchema);
 
 // User.create({
 //     email: "bob@bobby.com",
@@ -64,10 +65,10 @@ var User = mongoose.model("User", userSchema);
 //     }
 // });
 
-User.findOne({email: "bob@bobby.com"}).populate("posts").exec(function(err, user){
-    if(err){
-        console.log(err);
-    }else{
-        console.log(user);
-    }
-});
+// User.findOne({email: "bob@bobby.com"}).populate("posts").exec(function(err, user){
+//     if(err){
+//         console.log(err);
+//     }else{
+//         console.log(user);
+//     }
+// });
