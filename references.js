@@ -1,13 +1,15 @@
 var mongoose = require("mongoose");
 mongoose.connect("mongodb://localhost/bog_demo2_2");
 
-//define POST model - title, content =====> This needs to come first because it has to be part of the userSchema
-var postSchema = new mongoose.Schema({
-    title: String,
-    content: String
-});
+var Post = require("./models/post");
 
-var Post = mongoose.model("Post", postSchema);
+//define POST model - title, content =====> This needs to come first because it has to be part of the userSchema
+// var postSchema = new mongoose.Schema({
+//     title: String,
+//     content: String
+// });
+
+// var Post = mongoose.model("Post", postSchema);
 
 //define User model - email and name
 var userSchema = new mongoose.Schema({
